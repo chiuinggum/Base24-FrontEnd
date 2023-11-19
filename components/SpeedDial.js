@@ -1,3 +1,5 @@
+import CreateMap from "./CreateMap";
+
 export default function SpeedDial() {
     return (
         <div data-dial-init className="fixed bottom-6 start-6 group">
@@ -7,6 +9,7 @@ export default function SpeedDial() {
             >
                 <button
                     type="button" data-tooltip-target="tooltip-map" data-tooltip-trigger="hover" data-tooltip-placement="right"
+                    data-modal-target="create-map-modal" data-modal-toggle="create-map-modal" data-modal-trigger="click"
                     className="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -31,6 +34,7 @@ export default function SpeedDial() {
                 </svg>
                 <span className="sr-only">Open Speed Dial</span>
             </button>
+            <CreateMap/>
         </div>
     );
 };
