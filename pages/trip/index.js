@@ -1,5 +1,9 @@
+import SpeedDial from "@/components/SpeedDail";
+
 export default function Trip(){
     return (
-        <div>hello</div>
+        <div>
+            <SpeedDial/>
+        </div>
     );
 }
