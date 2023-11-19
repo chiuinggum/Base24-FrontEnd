@@ -8,8 +8,7 @@ export default function SpeedDial() {
                 className="flex flex-col items-center mb-4 space-y-2 opacity-0 group-hover:opacity-100 transition duration-300"
             >
                 <button
-                    type="button" data-tooltip-target="tooltip-map" data-tooltip-trigger="hover" data-tooltip-placement="right"
-                    data-modal-target="create-map-modal" data-modal-toggle="create-map-modal" data-modal-trigger="click"
+                    type="button"
                     className="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -17,12 +16,7 @@ export default function SpeedDial() {
                     </svg>
                     <span className="sr-only">Create a Map</span>
                 </button>
-                <div id="tooltip-map" role="tooltip"
-                    className="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                >
-                    Create a Map
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
+
             </div>
             <button
                 type="button" data-dial-toggle="speed-dial-menu-bottom-left"
