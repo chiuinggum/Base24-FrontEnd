@@ -1,4 +1,4 @@
-import SpeedDial from "@/components/SpeedDail";
+import SpeedDial from "@/components/SpeedDial";
 
 export default function Trip(){
     return (
