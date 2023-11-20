@@ -1,6 +1,7 @@
 export default function SignUp() {
     return (
         <div className="w-96 border shadow-lg rounded">
+            {/* test */}
             <h1 className="m-5">Sign Up</h1>
             <form>
                 <span className="flex mx-5 my-3 flex-col">
