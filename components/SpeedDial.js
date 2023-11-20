@@ -1,3 +1,5 @@
+import CreateMap from "./CreateMap";
+
 export default function SpeedDial() {
     return (
         <div data-dial-init className="fixed bottom-6 start-6 group">
@@ -26,6 +28,7 @@ export default function SpeedDial() {
                 </svg>
                 <span className="sr-only">Open Speed Dial</span>
             </button>
+            <CreateMap/>
         </div>
     );
 };
