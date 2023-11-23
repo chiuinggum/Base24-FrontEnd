@@ -1,6 +1,6 @@
-import SidebarButton from "./SideBarButton";
+import SidebarButton from "./SidebarButton";
 
-export default function TripSideBar() {
+export default function TripSidebar() {
     return (
         <>
             <button
