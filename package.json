@@ -14,9 +14,14 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@react-google-maps/api": "^2.19.2",
+    "@vis.gl/react-google-maps": "^0.3.3",
+    "cmdk": "^0.2.0",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "use-places-autocomplete": "^4.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
