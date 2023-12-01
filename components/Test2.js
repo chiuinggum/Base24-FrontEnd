@@ -7,6 +7,8 @@ import {
     useAutocomplete,
     useMapsLibrary,
 } from '@vis.gl/react-google-maps';
+import axios from 'axios';
+
 
 const AutocompleteComponent = () => {
     const inputRef = useRef(null);
@@ -17,8 +19,16 @@ const AutocompleteComponent = () => {
         if (place) {
             setInputValue(place.formatted_address || place.name);
             // do something with place
-            console.log(place.geometry.location);
-            
+            console.log("location", place.geometry.location);
+            console.log("place_id", place.place_id);
+            axios.post('http://localhost:4000/marker/create', {
+                name: place.name,
+                place_id: place.place_id,
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            })
+                .then((res) => { console.log(res) })
+                .catch((err) => { console.log(err) });
         }
 
         inputRef.current && inputRef.current.focus();
