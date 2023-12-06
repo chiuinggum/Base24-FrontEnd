@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
+import { parseCookies } from "nookies";
 import axios from "axios";
 
 export default function createMapPage () {
@@ -65,14 +66,37 @@ function Geocoding({ address }) {
     }, [geocodingService, address])
 
     useEffect(() => {
+        async function createMap() {
+            try {
+                const { cookies } = parseCookies();
+                const access_token = cookies.access_token;
+                const user_id = cookies.user_id;
+                const response = await axios.post(
+                    'http://localhost:4000/map/create',
+                    {
+                        name: address,
+                        lat,
+                        lng,
+                        user_id
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${access_token}`
+                        }
+                    }
+                );
+            } catch (err) {
+                console.error(err);
+            }
+        }
         if (geocodingResult) {
             console.log(geocodingResult.formatted_address);
-            console.log(
-                geocodingResult.geometry.location.lat(),
-                geocodingResult.geometry.location.lng()
-            );
+            const lat = geocodingResult.geometry.location.lat();
+            const lng = geocodingResult.geometry.location.lng();
+            console.log(lat, lng);
+            createMap(address, lat, lng);
         }
-        // await createMap();
     }, [geocodingResult]);
 
     if (!geocodingService) return <div>Loading...</div>
@@ -88,9 +112,26 @@ function Geocoding({ address }) {
 }
 
 // send lat and lng to backend
-async function createMap() {
+async function createMap(address, lat, lng) {
     try {
-        const response = axios.post()
+        const { cookies } = parseCookies();
+        const access_token = cookies.access_token;
+        const user_id = cookies.user_id;
+        const response = await axios.post(
+            'http://localhost:4000/map/create',
+            {
+                name: address,
+                lat,
+                lng,
+                user_id
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${access_token}`
+                }
+            }
+        );
     } catch (err) {
         console.error(err);
     }
