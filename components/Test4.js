@@ -78,7 +78,7 @@ export default function Test4() {
                 apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
                 libraries={['places']}
             >
-                <div style={{ height: "75%" }}>
+                <div style={{ height: "100vh" }}>
                     {/* <Autocomplete setMarkers={setMarkers} /> */}
                     <Autocomplete setMarkerData={setMarkerData} />
                     <div
