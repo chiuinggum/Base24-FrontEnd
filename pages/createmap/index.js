@@ -3,6 +3,33 @@ import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { parseCookies } from "nookies";
 import axios from "axios";
 
+async function createMap(address, lat, lng) {
+    try {
+        const cookies = parseCookies();
+        const access_token = cookies.access_token;
+        const user_id = cookies.user_id;
+        console.log(access_token, user_id);
+        const response = await axios.post(
+            'http://localhost:4000/map/create',
+            {
+                name: address,
+                lat,
+                lng,
+                user_id
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${access_token}`
+                }
+            }
+        );
+        console.log(response);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export default function createMapPage () {
     const nameRef = useRef();
     const [address, setAddress] = useState("");
@@ -66,37 +93,16 @@ function Geocoding({ address }) {
     }, [geocodingService, address])
 
     useEffect(() => {
-        async function createMap() {
-            try {
-                const { cookies } = parseCookies();
-                const access_token = cookies.access_token;
-                const user_id = cookies.user_id;
-                const response = await axios.post(
-                    'http://localhost:4000/map/create',
-                    {
-                        name: address,
-                        lat,
-                        lng,
-                        user_id
-                    },
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${access_token}`
-                        }
-                    }
-                );
-            } catch (err) {
-                console.error(err);
+        async function createAndSaveMap() {
+            if (geocodingResult) {
+                console.log(geocodingResult.formatted_address);
+                const lat = geocodingResult.geometry.location.lat();
+                const lng = geocodingResult.geometry.location.lng();
+                console.log(lat, lng);
+                await createMap(address, lat, lng);
             }
         }
-        if (geocodingResult) {
-            console.log(geocodingResult.formatted_address);
-            const lat = geocodingResult.geometry.location.lat();
-            const lng = geocodingResult.geometry.location.lng();
-            console.log(lat, lng);
-            createMap(address, lat, lng);
-        }
+        createAndSaveMap();
     }, [geocodingResult]);
 
     if (!geocodingService) return <div>Loading...</div>
@@ -111,28 +117,29 @@ function Geocoding({ address }) {
     );
 }
 
-// send lat and lng to backend
-async function createMap(address, lat, lng) {
-    try {
-        const { cookies } = parseCookies();
-        const access_token = cookies.access_token;
-        const user_id = cookies.user_id;
-        const response = await axios.post(
-            'http://localhost:4000/map/create',
-            {
-                name: address,
-                lat,
-                lng,
-                user_id
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${access_token}`
-                }
-            }
-        );
-    } catch (err) {
-        console.error(err);
-    }
-}
+// async function createMap(address, lat, lng) {
+//     try {
+//         const { cookies } = parseCookies();
+//         const access_token = cookies.access_token;
+//         const user_id = cookies.user_id;
+//         console.log(access_token, user_id);
+//         const response = await axios.post(
+//             'http://localhost:4000/map/create',
+//             {
+//                 name: address,
+//                 lat,
+//                 lng,
+//                 user_id
+//             },
+//             {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'Authorization': `Bearer ${access_token}`
+//                 }
+//             }
+//         );
+//         console.log(response);
+//     } catch (err) {
+//         console.error(err);
+//     }
+// }
