@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
-import { parseCookies } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import axios from "axios";
 
 async function createMap(address, lat, lng) {
@@ -24,7 +24,8 @@ async function createMap(address, lat, lng) {
                 }
             }
         );
-        console.log(response);
+        const map_id = response.data.data.id;
+        setCookie(null, 'map_id', map_id, { path: '/' });
     } catch (err) {
         console.error(err);
     }
@@ -116,30 +117,3 @@ function Geocoding({ address }) {
         </div>
     );
 }
-
-// async function createMap(address, lat, lng) {
-//     try {
-//         const { cookies } = parseCookies();
-//         const access_token = cookies.access_token;
-//         const user_id = cookies.user_id;
-//         console.log(access_token, user_id);
-//         const response = await axios.post(
-//             'http://localhost:4000/map/create',
-//             {
-//                 name: address,
-//                 lat,
-//                 lng,
-//                 user_id
-//             },
-//             {
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Authorization': `Bearer ${access_token}`
-//                 }
-//             }
-//         );
-//         console.log(response);
-//     } catch (err) {
-//         console.error(err);
-//     }
-// }
