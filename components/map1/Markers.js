@@ -48,9 +48,10 @@ export default function Markers (props) {
                     if (placeFilter !== null) {
                         if (marker.place_tag !== placeFilter) return;
                     }
-                    // if (dateFilter !== null) {
-                        
-                    // }
+                    if (dateFilter !== null) {
+                        console.log(marker.dates.data);
+                        if (!marker.dates.data.includes(dateFilter)) return;
+                    }
                     return (
                         <div key={marker.id}>
                             <AdvancedMarker

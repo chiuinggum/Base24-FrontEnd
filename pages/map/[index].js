@@ -35,13 +35,15 @@ export default function MapPage () {
         const fetchMarkers = async () => {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_MARKERS_URL}/get/${map_id}`);
             const data = response.data.markers;
-            data.forEach((marker) => {
-                localStorage.setItem(marker.id, JSON.stringify(marker.info));
-            })
-            // for (let marker of data) {
+            // data.forEach((marker) => {
             //     localStorage.setItem(marker.id, JSON.stringify(marker.info));
-            //     const markerDateRes = await 
-            // }
+            // })
+            for (let marker of data) {
+                localStorage.setItem(marker.id, JSON.stringify(marker.info));
+                const markerDateRes = await axios.get(`${process.env.NEXT_PUBLIC_DATES_URL}/get/marker/${marker.id}`);
+                const markerDate = markerDateRes.data;
+                marker.dates = markerDate;
+            }
             setMarkers(data);
         }
         const fetchMap = async () => {
