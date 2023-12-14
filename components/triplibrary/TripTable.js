@@ -18,9 +18,11 @@ import { parseCookies } from 'nookies';
 import axios from 'axios';
 import { Link } from '@mui/material';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import { setCookie } from 'nookies';
 
-function createData(name, startDate, endDate, maps) {
+function createData(id, name, startDate, endDate, maps) {
   return {
+    id,
     name,
     startDate: startDate.replace(/-/g, "/"),
     endDate: endDate.replace(/-/g, "/"),
@@ -44,7 +46,7 @@ function createData(name, startDate, endDate, maps) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-
+  console.log(row);
 
 
   return (
@@ -71,7 +73,7 @@ function Row(props) {
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 Maps
-                <Link href={`/createmap`}>
+                <Link href={`/createmap`} onClick={setCookie(null, 'trip_id', row.id, { path: '/' })}>
                 <LibraryAddIcon/>
                 </Link>
               </Typography>
@@ -160,7 +162,7 @@ export default function TripTable() {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_TRIPS_URL}/${user_id}`);
       const data = response.data.data;
       data.forEach((trip) => {
-        const row = createData(trip.name, trip.start_date, trip.end_date, trip.maps);
+        const row = createData(trip.id, trip.name, trip.start_date, trip.end_date, trip.maps);
         console.log(row);
         temp.push(row);
       })

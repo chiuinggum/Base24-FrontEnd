@@ -73,7 +73,11 @@ export default function CreateMapPage () {
                     >
                         Create
                     </button>
-                    <button type="button" className="bg-gray-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl">
+                    <button
+                        type="button"
+                        className="bg-gray-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl"
+                        onClick={() => Router.push('/triplibrary')}
+                    >
                         Cancel
                     </button>
                 </span>
@@ -175,15 +179,15 @@ function Geocoding(props) {
         createAndSaveMap();
     }, [geocodingResult]);
 
-    if (!geocodingService) return <div>Loading...</div>
-    if (!geocodingResult) return <div>Geocoding...</div>
+    // if (!geocodingService) return <div>Loading...</div>
+    // if (!geocodingResult) return <div>Geocoding...</div>
 
-    return (
-        <div >
-            <h1>{geocodingResult.formatted_address}</h1>
-            <h2>{geocodingResult.geometry.location.lat()}</h2>
-            <h2>{geocodingResult.geometry.location.lng()}</h2>
-        </div>
-    );
+    // return (
+    //     <div >
+    //         <h1>{geocodingResult.formatted_address}</h1>
+    //         <h2>{geocodingResult.geometry.location.lat()}</h2>
+    //         <h2>{geocodingResult.geometry.location.lng()}</h2>
+    //     </div>
+    // );
     return null;
 }
