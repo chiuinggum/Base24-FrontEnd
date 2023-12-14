@@ -19,7 +19,7 @@ export default function ToggleButtonsMultiple(props) {
 
     const handleFormat = (event, newFormats) => {
         setFormats(newFormats);
-        console.log(newFormats);
+        // console.log(newFormats);
         if (newFormats.includes('focus')) {
             setMapId(process.env.NEXT_PUBLIC_MAP_ID_SILVER);
             setFocusIsChecked(true);

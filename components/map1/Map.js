@@ -56,12 +56,14 @@ export default function MapComponent (props) {
                         setPaths={setPaths}
                     />
                     {
-                        pathsIsChecked &&
+                    
                         <Paths
                             map_id={map_id}
                             paths={paths}
                             setPaths={setPaths}
                             setPathClicked={setPathClicked}
+                            dateFilter={dateFilter}
+                            pathsIsChecked={pathsIsChecked}
                         />
                     }
                 </Map>

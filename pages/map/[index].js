@@ -58,7 +58,12 @@ export default function MapPage () {
             data.forEach((path) => {
                 localStorage.setItem(`path-${path.id}`, JSON.stringify(path.info));
             })
-            // console.log(data);
+            for (let path of data) {
+                localStorage.setItem(`path-${path.id}`, JSON.stringify(path.info));
+                const pathDateRes = await axios.get(`${process.env.NEXT_PUBLIC_DATES_URL}/get/path/${path.id}`);
+                const pathDate = pathDateRes.data;
+                path.dates = pathDate;
+            }
             setPaths(data);
         }
 
