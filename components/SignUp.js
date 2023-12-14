@@ -23,11 +23,15 @@ export default function SignUp() {
         const user = { username, email, password, conf_password: confirmPassword };
 
         try {
-            const response = axios.post(NEXT_PUBLIC_SIGNUP_URL, user, {
+            const response = axios.post(
+                `${process.env.NEXT_PUBLIC_USERS_URL}/signup`,
+                user,
+                {
                 headers: {
                     "Content-Type": "application/json"
                 }
-            });
+                }
+            );
             const { data } = response;
             console.log('Sign up response', data);
         } catch (err) {

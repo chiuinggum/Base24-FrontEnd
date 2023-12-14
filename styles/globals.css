@@ -27,10 +27,10 @@ body {
 } */
 
 .pac-container {
-  background-color: #fff;
+  background-color: white;
   position: absolute!important;
   z-index: 1000;
-  border-radius: 2px;
+  border-radius: 20px;
   border-top: 1px solid #d9d9d9;
   font-family: Arial, sans-serif;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -53,9 +53,41 @@ body {
   color: #999
 }
 .pac-item:hover {
-  background-color: #fafafa
+  background-color: lightblue;
 }
 .pac-item-selected,
 .pac-item-selected:hover {
   background-color: #ebf2fe
+}
+
+.custom-layout {
+	position: absolute;
+	inset: 0px;
+	z-index: 300;
+	pointer-events: none;
+}
+
+.custom-toolbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+	gap: 8px;
+}
+
+.custom-button {
+	pointer-events: all;
+	padding: 4px 12px;
+	background: white;
+	border: 1px solid black;
+	border-radius: 64px;
+}
+
+.custom-button[data-isactive='true'] {
+	background-color: black;
+	color: white;
 }

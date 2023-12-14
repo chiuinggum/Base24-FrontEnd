@@ -1,9 +1,9 @@
-import EmailAuth from '@/components/EmailAuth';
+// import EmailAuth from '@/components/EmailAuth';
 
-export default function EmailAuthPage() {
-    return (
-        <div className="h-screen flex justify-center items-center">
-            <EmailAuth/>
-        </div>
-    );
-};
+// export default function EmailAuthPage() {
+//     return (
+//         <div className="h-screen flex justify-center items-center">
+//             <EmailAuth/>
+//         </div>
+//     );
+// };

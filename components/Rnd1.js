@@ -1,38 +1,65 @@
 import {Rnd} from 'react-rnd';
-import Test4 from './Test4';
+import GoogleMap from './map/GoogleMap';
 
-function Box() {
+function Box(props) {
+    const {
+        mapId,
+        markers,
+        setMarkers,
+        drawModeIsChecked,
+        index,
+        setMarkerClicked,
+        markerModeIsChecked
+    } = props;
     return (
-        <div
-            className="box border rounded-lg"
-            style={{ margin: 0, height: '100%', paddingBottom: '40px' }}
-        >
-            <Test4/>
-        </div>
+        <>
+            <GoogleMap
+                mapId={mapId}
+                markers={markers}
+                setMarkers={setMarkers}
+                drawModeIsChecked={drawModeIsChecked}
+                index={index}
+                setMarkerClicked={setMarkerClicked}
+                markerModeIsChecked={markerModeIsChecked}
+            />
+        </>
     );
 };
 
-export default function Rnd1() {
+export default function Rnd1(props) {
+    const {
+        mapId,
+        markers,
+        setMarkers,
+        drawModeIsChecked,
+        index,
+        setMarkerClicked,
+        markerModeIsChecked
+    } = props;
     return (
     
-        <div
-            style={{
-                width: '800px',
-                height: '400px',
-            }}
-        >
+        <div>
             <Rnd
                 default={{
-                    x: 150,
-                    y: 205,
+                    x: 0,
+                    y: 0,
                     width: 500,
-                    height: 190,
+                    height: 400,
                 }}
-                minWidth={500}
-                minHeight={190}
-                bounds="window"
+                className='border w-fit'
+                // minWidth={500}
+                // minHeight={100}
+                // bounds="parent"
             >
-                <Box/>
+                <Box
+                    mapId={mapId}
+                    markers={markers}
+                    setMarkers={setMarkers}
+                    drawModeIsChecked={drawModeIsChecked}
+                    index={index}
+                    setMarkerClicked={setMarkerClicked}
+                    markerModeIsChecked={markerModeIsChecked}
+                />
             </Rnd>
         </div>
     

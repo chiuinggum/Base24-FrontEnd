@@ -18,15 +18,39 @@ export default function ViewPlaceTagList() {
         labelId="demo-select-small-label"
         id="demo-select-small"
         value={tag}
-        label="Age"
+        label="Tag"
         onChange={handleChange}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value="airport">airport</MenuItem>
+        <MenuItem value="bakery">bakery</MenuItem>
+        <MenuItem value="bar">bar/club</MenuItem>
+        <MenuItem value="beach">beach</MenuItem>
+        <MenuItem value="bicycle">bicycle</MenuItem>
+        <MenuItem value="book">bookstore/library</MenuItem>
+        <MenuItem value="banking">banking</MenuItem>
+        <MenuItem value="cafe">cafe</MenuItem>
+        <MenuItem value="church">church</MenuItem>
+        <MenuItem value="dessert">dessert</MenuItem>
+        <MenuItem value="health">health</MenuItem>
+        <MenuItem value="hotel">hotel</MenuItem>
+        <MenuItem value="mall">mall</MenuItem>
+        <MenuItem value="museum">museum/gallery</MenuItem>
+        <MenuItem value="nature">nature</MenuItem>
+        <MenuItem value="other">other</MenuItem>
+        <MenuItem value="photo">photo</MenuItem>
+        <MenuItem value="restaurant">restaurant</MenuItem>
+        <MenuItem value="school">school</MenuItem>
+        <MenuItem value="show">show</MenuItem>
+        <MenuItem value="sports">sports</MenuItem>
+        <MenuItem value="station">station</MenuItem>
+        <MenuItem value="store">store</MenuItem>
+        <MenuItem value="taxi">taxi</MenuItem>
+        <MenuItem value="temple">temple</MenuItem>
+        <MenuItem value="toilet">toilet</MenuItem>
+        <MenuItem value="zoo">zoo</MenuItem>
       </Select>
     </FormControl>
   );

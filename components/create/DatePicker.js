@@ -43,8 +43,13 @@ const DatePicker = (props) => {
   const [show, setShow] = useState(false);
   const {setDate} = props;
   const handleChange = (selectedDate) => {
-    console.log(selectedDate);
-    setDate(selectedDate);
+    const temp = new Date(selectedDate);
+    const year = temp.getFullYear();
+    const month = String(temp.getMonth() + 1).padStart(2, '0');
+    const day = String(temp.getDate()).padStart(2, '0');  
+    const date = `${year}-${month}-${day}`;
+    console.log(date);
+    setDate(date);
   };
 
   const handleClose = (state) => {

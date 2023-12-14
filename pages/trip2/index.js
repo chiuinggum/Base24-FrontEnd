@@ -1,22 +1,20 @@
-import Test6 from '../../components/Test6';
-import Test10 from '../../components/Test10';
-// import MD from '../../components/MD';
+import Rnd1 from '../../components/Rnd1';
 import MapDefaultSidebar from '../../components/map/MapDefaultSidebar';
-import PlaceSidebar from '../../components/map/PlaceSidebar';
-import GoogleMap from '../../components/map/GoogleMap';
 import { useState } from 'react';
+import dynamic from "next/dynamic";
+const Editor = dynamic(() => import("../../components/Editor"), { ssr: false });
 
-export default function Map() {
+export default function Trip(){
+    const index = 1
     const [mapId, setMapId] = useState(process.env.NEXT_PUBLIC_MAP_ID_LIGHT);
     const [mapModeIsChecked, setMapModeIsChecked] = useState(false);
     const [drawModeIsChecked, setDrawModeIsChecked] = useState(false);
     const [markerModeIsChecked, setMarkerModeIsChecked] = useState(false);
     const [markers, setMarkers] = useState([]);
-    const [polyPaths, setPolyPaths] = useState([]);
-    const [markerClicked, setMarkerClicked] = useState();
-
+    const [markerClicked, setMarkerClicked] = useState(false);
+    const [polyClicked, setPolyClicked] = useState(false);
     return (
-        <div className='flex flex-rol'>
+        <div className='flex flex-row'>
             <MapDefaultSidebar
                 setMapId={setMapId}
                 mapModeIsChecked={mapModeIsChecked}
@@ -25,18 +23,21 @@ export default function Map() {
                 setDrawModeIsChecked={setDrawModeIsChecked}
                 markerModeIsChecked={markerModeIsChecked}
                 setMarkerModeIsChecked={setMarkerModeIsChecked}
-            />
-            <GoogleMap
-                mapId={mapId}
                 markers={markers}
                 setMarkers={setMarkers}
-                polyPaths={polyPaths}
-                setPolyPaths={setPolyPaths}
-                drawModeIsChecked={drawModeIsChecked}
-                markerClicked={markerClicked}
-                setMarkerClicked={setMarkerClicked}
+                index={index}
             />
-            {/* <PlaceSidebar placeName='Place Name' /> */}
+            <div style={{ height: '100vh', width: '75vw' }} className='border'>
+                <Rnd1
+                    mapId={mapId}
+                    markers={markers}
+                    setMarkers={setMarkers}
+                    drawModeIsChecked={drawModeIsChecked}
+                    index={index}
+                    setMarkerClicked={setMarkerClicked}
+                    markerModeIsChecked={markerModeIsChecked}
+                />
+            </div>
         </div>
     );
-};
+}

@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/MD.js"  ],
+, "components/MD.js", "pages/trip/index.js"  ],
   "exclude": [
     "node_modules"
   ]
