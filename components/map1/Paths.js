@@ -21,15 +21,23 @@ export default function Paths (props) {
         if (!mapsLib || !map || !paths) return;
         const lineSymbol = { path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, };
         let polys = [];
-        let isVisible;
-        if (pathsIsChecked) isVisible = true;
-        else isVisible = false;
+        // let isVisible;
+        // if (pathsIsChecked) isVisible = true;
+        // else isVisible = false;
         if (polylines.length > 0) {
             polylines.map((polyline) => {
                 polyline.setMap(null);
             })
         }
         paths?.map((path) => {
+            let isVisible;
+            if (pathsIsChecked && path.dates.data.includes(dateFilter)) {
+                isVisible = true;
+            } else if (pathsIsChecked && dateFilter === null) {
+                isVisible = true;
+            } else {
+                isVisible = false;
+            }
             const polyline = new mapsLib.Polyline({
                 path: [
                     { lat: parseFloat(path.start_marker_lat), lng: parseFloat(path.start_marker_lng) },
@@ -67,26 +75,38 @@ export default function Paths (props) {
         } else {
             // console.log('pathIsChecked');
             // console.log(polylines);
-            polylines?.map((polyline) => {
-                polyline.setVisible(true);
-            })
+            console.log(dateFilter);
+            if (dateFilter !== null) {
+                polylines?.map((polyline) => {
+                    if (!polyline.dates.data.includes(dateFilter)) {
+                        console.log(polyline.dates.data);
+                        polyline.setVisible(false);
+                    } else {
+                        polyline.setVisible(true);
+                    }
+                })
+            } else {
+                polylines?.map((polyline) => {
+                    polyline.setVisible(true);
+                })
+            }
         }
-    }, [pathsIsChecked])
+    }, [pathsIsChecked, dateFilter, paths])
 
-    useEffect(() => {
-        if (dateFilter === null) {
-            polylines?.map((polyline) => {
-                polyline.setOptions({vidible: true})
-            })
-        } else {
-            polylines?.map((polyline) => {
-                if (!polyline.dates.data.includes(dateFilter)) {
-                    polyline.setOptions({visible: false})
-                }
-            })
-        }
+    // useEffect(() => {
+    //     if (dateFilter === null) {
+    //         polylines?.map((polyline) => {
+    //             polyline.setVisible(false);
+    //         })
+    //     } else {
+    //         polylines?.map((polyline) => {
+    //             if (!polyline.dates.data.includes(dateFilter)) {
+    //                 polyline.setVisible(true);
+    //             }
+    //         })
+    //     }
         
-    }, [dateFilter])
+    // }, [dateFilter])
 
     return null;
 }

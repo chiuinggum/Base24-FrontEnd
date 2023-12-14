@@ -49,7 +49,7 @@ export default function Markers (props) {
                         if (marker.place_tag !== placeFilter) return;
                     }
                     if (dateFilter !== null) {
-                        console.log(marker.dates.data);
+                        // console.log(marker.dates.data);
                         if (!marker.dates.data.includes(dateFilter)) return;
                     }
                     return (
