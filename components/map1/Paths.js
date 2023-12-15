@@ -31,7 +31,7 @@ export default function Paths (props) {
         }
         paths?.map((path) => {
             let isVisible;
-            if (pathsIsChecked && path.dates.data.includes(dateFilter)) {
+            if (pathsIsChecked && path.dates?.data.includes(dateFilter)) {
                 isVisible = true;
             } else if (pathsIsChecked && dateFilter === null) {
                 isVisible = true;

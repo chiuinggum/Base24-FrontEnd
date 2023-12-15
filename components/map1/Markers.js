@@ -14,7 +14,8 @@ export default function Markers (props) {
         pencilIsChecked,
         setMarkerClicked,
         paths,
-        setPaths
+        setPaths,
+        map_id
     } = props;
     const [highlightedMarker, setHighlightedMarker] = useState(null);
 
@@ -26,7 +27,7 @@ export default function Markers (props) {
                 const response = await axios.post(
                     `${process.env.NEXT_PUBLIC_PATHS_URL}/create`,
                     {
-                        map_id: paths[0].map_id,
+                        map_id: parseInt(map_id),
                         start_marker_id: arr[0],
                         end_marker_id: arr[1]
                     },

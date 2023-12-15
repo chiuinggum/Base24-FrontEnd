@@ -54,6 +54,7 @@ export default function MapComponent (props) {
                         setMarkerClicked={setMarkerClicked}
                         paths={paths}
                         setPaths={setPaths}
+                        map_id={map_id}
                     />
                     {
                     
